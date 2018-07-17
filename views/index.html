@@ -1,0 +1,91 @@
+<head>
+  <style>
+    #container {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+
+<div class="container">
+
+  <button id="btn2" onclick = "clickPost()">Sign Up</button>
+  <button id="btn" onclick = "clickLogin()">Login</button>
+  
+ <br> username:
+  <input id = "userBox" type="text" value="">
+  <br>
+ <br> userpass:
+  <input id = "passBox" type="text" value="">
+  <br>
+ <br> userEmail:
+  <input id = "emailBox" type="text" value="">
+  <br>
+</div>
+
+
+
+<script>
+
+
+    function clickLogin() {
+
+      var XHR = new XMLHttpRequest();
+
+      var newData = {};
+      newData.username = document.getElementById("userBox").value;
+      newData.password = document.getElementById("passBox").value;
+
+      jsonUpdate = JSON.stringify(newData);
+
+      XHR.open('POST', "/login", true);
+      XHR.setRequestHeader('Content-type','application/json; charset=utf-8');
+
+      XHR.onreadystatechange = function() {
+
+        if(XHR.readyState == 4 && XHR.status == 200) {
+            
+            console.log("Checking password...");
+
+        }
+
+      }
+
+      XHR.send(jsonUpdate);
+
+      window.location.href = 'http://localhost:5000/userPage'
+
+    }
+
+
+
+    function clickPost() {
+
+      var XHR = new XMLHttpRequest();
+
+      var newData = {};
+      newData.username = document.getElementById("userBox").value;
+      newData.password = document.getElementById("passBox").value;
+      newData.email = document.getElementById("emailBox").value;
+
+      jsonUpdate = JSON.stringify(newData);
+
+      XHR.open('POST', "/signup", true);
+      XHR.setRequestHeader('Content-type','application/json; charset=utf-8');
+
+      XHR.onreadystatechange = function() {
+
+        if(XHR.readyState == 4 && XHR.status == 200) {
+            
+            console.log("Posted from front-end...");
+
+        }
+
+      }
+
+      XHR.send(jsonUpdate);
+
+    }
+
+
+</script>

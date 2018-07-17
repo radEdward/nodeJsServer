@@ -1,0 +1,32 @@
+<h1 id = "greeting" onload = "generatePage()">Welcome </h1>
+
+
+<script>
+
+    
+
+    function generatePage() {
+
+        var header = document.getElementById("greeting");
+
+        var XHR = new XMLHttpRequest();
+
+        console.log('loading...');
+
+        xhttp.onreadystatechange = function() {
+
+            if (XHR.readyState == 4 && XHR.status == 200) {
+
+                header.innerHTML += JSON.parse(XHR.responseText).username;
+                header.style.color = JSON.parse(XHR.responseText).color;
+            
+            }
+
+        };
+
+        XHR.open('GET', "/thisUser", true);
+        XHR.send();
+
+    }
+
+</script>
