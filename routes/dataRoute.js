@@ -2,10 +2,10 @@ var fs = require('fs');
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-    host: "den1.mysql6.gear.host",
-    user: "shawntesting",
-    password: "Ky6tZ?8Cx5k!",
-    database: "shawntesting"
+    host: "...",
+    user: "...",
+    password: "...",
+    database: "..."
 });
 
 con.connect(function(err) {
@@ -93,33 +93,6 @@ module.exports = function(app, db) {
 
 
         res.send();
-
-    });
-
-
-
-    app.get('/thisUser', function(res, req) {
-
-        var newJson = {};
-            newJson.username = userName;
-            newJson.color;
-
-        var sql = "SELECT nodeAppUser.color FROM nodeApp JOIN nodeAppUser ON nodeApp.id = nodeAppUser.id WHERE username = '" + userName + "'";
-
-        con.query(sql, function(err, result) {
-
-            if (err) throw err;
-
-            var colorChoice = result[0].color;
-            newJson.color = colorChoice;
-
-            console.log(colorChoice);
-
-        });
-
-
-
-        res.send(newJson);
 
     });
 
